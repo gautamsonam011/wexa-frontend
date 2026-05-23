@@ -71,7 +71,7 @@ export default function HomePage() {
         );
 
         router.push(
-          "/dashboard"
+          "/dashboards"
         );
 
       } catch (error) {

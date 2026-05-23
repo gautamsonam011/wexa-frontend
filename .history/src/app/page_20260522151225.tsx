@@ -34,8 +34,6 @@ export default function HomePage() {
 
         setLoading(true);
 
-        console.log(formData);
-
         let response;
 
         if (isLogin) {
@@ -51,19 +49,10 @@ export default function HomePage() {
         } else {
 
           response =
-            await registerUser({
-              full_name:
-                formData.full_name,
-              organization_name:
-                formData.organization_name,
-              email:
-                formData.email,
-              password:
-                formData.password,
-            });
+            await registerUser(
+              formData
+            );
         }
-
-        console.log(response);
 
         localStorage.setItem(
           "token",
@@ -95,7 +84,7 @@ export default function HomePage() {
 
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-600/10 to-purple-500/10" />
 
-      <div className="relative z-10 grid w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-2">
+      <div className="relative z-10 grid w-full max-w-6xl grid-cols-1 gap-12 lg:grid-cols-2">
 
         <div className="flex flex-col justify-center">
 
@@ -111,7 +100,7 @@ export default function HomePage() {
 
           <h1 className="text-6xl font-extrabold leading-tight text-white">
 
-            Wexa
+            Realtime
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
 
               {" "}Analytics
@@ -122,16 +111,16 @@ export default function HomePage() {
 
           <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">
 
-            Monitor realtime events,
-            dashboards, reports,
-            analytics and alerts
-            from one intelligent platform.
+            Monitor events, dashboards,
+            reports, alerts and realtime
+            metrics from one unified
+            enterprise platform.
 
           </p>
 
-          <div className="mt-10 flex gap-5">
+          <div className="mt-10 flex gap-4">
 
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-5 backdrop-blur">
+            <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur">
 
               <h2 className="text-3xl font-bold text-white">
 
@@ -147,7 +136,7 @@ export default function HomePage() {
 
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-5 backdrop-blur">
+            <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur">
 
               <h2 className="text-3xl font-bold text-white">
 
@@ -209,7 +198,6 @@ export default function HomePage() {
 
               <>
                 <input
-                  value={formData.full_name}
                   placeholder="Full Name"
                   className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white outline-none placeholder:text-slate-500"
                   onChange={(e) =>
@@ -222,7 +210,6 @@ export default function HomePage() {
                 />
 
                 <input
-                  value={formData.organization_name}
                   placeholder="Organization Name"
                   className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white outline-none placeholder:text-slate-500"
                   onChange={(e) =>
@@ -238,7 +225,6 @@ export default function HomePage() {
 
             <input
               type="email"
-              value={formData.email}
               placeholder="Email"
               className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white outline-none placeholder:text-slate-500"
               onChange={(e) =>
@@ -252,7 +238,6 @@ export default function HomePage() {
 
             <input
               type="password"
-              value={formData.password}
               placeholder="Password"
               className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white outline-none placeholder:text-slate-500"
               onChange={(e) =>
